@@ -73,10 +73,10 @@ class HostSsh:
         return self.result_format("/etc/sysconfig/network-scripts/ifcfg-*", eth_result)
 
     def route(self):
-        #/etc/sysconfig/network-scripts/route-* を検索して
+        #/etc/sysconfig/network-scripts/route-eth* を検索して
         #該当するファイルの内容をすべて表示する
         route = self.connection.execute(
-                "LANG=C ls /etc/sysconfig/network-scripts/route-*")
+                "LANG=C ls /etc/sysconfig/network-scripts/route-eth*")
         route_result = ""
         for item in route:
             item = item.rstrip("\n")
@@ -87,9 +87,9 @@ class HostSsh:
                 route_result += item + "\n"
                 break
             route_com = "cat" + item
-            route_result += "".join(self.connection.execute(route_com)) +"\n"
+            route_result += route_com + "\n" + "".join(self.connection.execute(route_com)) +"\n"
 
-        return self.result_format("/etc/sysconfig/network-scripts/route-*",
+        return self.result_format("/etc/sysconfig/network-scripts/route-eth*",
                 route_result)
 
     def cpu(self):
@@ -189,6 +189,7 @@ if __name__ == '__main__':
             "cat /etc/ntp.conf",
             "ntpq -p",
             "cpu",
+            "free",
             "memory",
             "df -h",
             "cat /etc/fstab",
