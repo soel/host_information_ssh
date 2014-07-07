@@ -14,17 +14,17 @@ host に ssh でログインして取得したい情報を自動で取得しま�
 
 1. paramico のインストール
   ```bash
-  -pip install paramiko
+  pip install paramiko
   ```
 
 1. git clone
   ```bash
-  - git clone https://github.com/soel/host_information_ssh.git
+  git clone https://github.com/soel/host_information_ssh.git
   ```
 
 ## 使い方
   ```bash
-  - ./host_ssh.py <ip address> <option>
+  ./host_ssh.py <ip address> <option>
   ```
   - option にはデフォルトで取得される情報以外のコマンドを記述すると情報を取得できます
 
