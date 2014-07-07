@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-import ssh を使用するために
-/u/user/local/lib/python2.7/site-packages/ssh.py
-を作成しています
-また、paramiko という外部パッケージが必要です
+paramiko 外部パッケージが必要です
 
 このスクリプトの対象となる機器は
 redhat系 のみです
@@ -196,9 +193,6 @@ if __name__ == '__main__':
             "cat /etc/snmp/snmpd.conf",
             "cat /etc/inittab",
             "cat /etc/init/control-alt-delete.conf",
-            "cat /home/bbt-adm/ks-post.log",
-            "cat /home/bbt-adm/installcheck/service_off_check",
-            "cat /home/bbt-adm/installcheck/service_on_check",
             "grep -i error /var/log/messages",
             "grep -i fail /var/log/messages",
             "dmesg | grep -i error",
@@ -211,11 +205,11 @@ if __name__ == '__main__':
         command_list.extend(option_list)
 
     #root のパスワード確認とパラメータの取得
-    username_root = 'root'
-    print 'user name: '+ username_root + '\n'
-    password_root = raw_input('password:')
-    host_ssh3 = HostSsh(sys.argv[1], username_root, password_root, command_list)
-    host_ssh3.ssh_connect()
-    result_list = host_ssh3.command()
-    host_ssh3.ssh_close()
-    host_ssh3.result_print(result_list)
+    username = 'root'
+    print 'user name: '+ username + '\n'
+    password = raw_input('password:')
+    host_ssh = HostSsh(sys.argv[1], username, password, command_list)
+    host_ssh.ssh_connect()
+    result_list = host_ssh.command()
+    host_ssh.ssh_close()
+    host_ssh.result_print(result_list)
