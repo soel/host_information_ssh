@@ -197,6 +197,7 @@ if __name__ == '__main__':
             "grep -i fail /var/log/messages",
             "dmesg | grep -i error",
             "dmesg | grep -i fail",
+            "chkconfig --list",
             ]
 
     argv_check()
